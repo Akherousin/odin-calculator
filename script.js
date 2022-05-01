@@ -113,3 +113,18 @@ function handleClearClick(e) {
 
   displayText.innerText = displayedValue;
 }
+
+buttons.addEventListener("click", handleUndoClick);
+
+function handleUndoClick(e) {
+  const button = e.target;
+  if (!button.classList.contains("btn-undo")) return;
+  if (displayedValue === "") return;
+
+  displayedValue = displayedValue.slice(0, -1);
+  secondValue === ""
+    ? (firstValue = displayedValue)
+    : (secondValue = displayedValue);
+
+  displayText.innerText = displayedValue;
+}
