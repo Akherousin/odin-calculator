@@ -47,7 +47,6 @@ function handleDigitClick(e) {
   } else {
     displayedValue += button.value;
     secondValue = displayedValue;
-    console.log(secondValue);
   }
 
   displayText.innerText = displayedValue;
@@ -77,23 +76,26 @@ buttons.addEventListener("click", handleEqualsClick);
 function handleEqualsClick(e) {
   const button = e.target;
   if (!button.classList.contains("btn-equals")) return;
+
+  if (firstValue === "" || secondValue === "") return;
+
   displayedValue = operate(operatorValue, firstValue, secondValue);
   displayText.innerText = displayedValue;
 }
 
-// buttons.addEventListener("click", handlePointClick);
+buttons.addEventListener("click", handlePointClick);
 
-// function handlePointClick(e) {
-//   const button = e.target;
-//   if (!button.classList.contains("btn-point")) return;
+function handlePointClick(e) {
+  const button = e.target;
+  if (!button.classList.contains("btn-point")) return;
 
-//   if (displayedValue.includes(".")) return;
+  if (displayedValue.includes(".")) return;
 
-//   if (displayedValue === "") {
-//     displayedValue = "0" + button.value;
-//     displayText.innerText = displayedValue;
-//   } else {
-//     displayedValue += button.value;
-//     displayText.innerText = displayedValue;
-//   }
-// }
+  if (displayedValue === "") {
+    displayedValue = "0" + button.value;
+    displayText.innerText = displayedValue;
+  } else {
+    displayedValue += button.value;
+    displayText.innerText = displayedValue;
+  }
+}
