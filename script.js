@@ -45,9 +45,9 @@ function handleDigitClick(e) {
     displayedValue += button.value;
     firstValue = displayedValue;
   } else {
-    displayedValue = "";
     displayedValue += button.value;
     secondValue = displayedValue;
+    console.log(secondValue);
   }
 
   displayText.innerText = displayedValue;
@@ -68,6 +68,7 @@ function handleOperatorClick(e) {
     operatorValue = button.value;
     firstValue = displayedValue;
     secondValue = "";
+    displayedValue = "";
   }
 }
 
@@ -79,3 +80,20 @@ function handleEqualsClick(e) {
   displayedValue = operate(operatorValue, firstValue, secondValue);
   displayText.innerText = displayedValue;
 }
+
+// buttons.addEventListener("click", handlePointClick);
+
+// function handlePointClick(e) {
+//   const button = e.target;
+//   if (!button.classList.contains("btn-point")) return;
+
+//   if (displayedValue.includes(".")) return;
+
+//   if (displayedValue === "") {
+//     displayedValue = "0" + button.value;
+//     displayText.innerText = displayedValue;
+//   } else {
+//     displayedValue += button.value;
+//     displayText.innerText = displayedValue;
+//   }
+// }
