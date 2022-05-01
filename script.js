@@ -35,6 +35,7 @@ let secondValue = "";
 
 const buttons = document.querySelector(".buttons");
 const displayText = document.querySelector(".display-text");
+
 buttons.addEventListener("click", handleDigitClick);
 
 function handleDigitClick(e) {
@@ -56,6 +57,7 @@ buttons.addEventListener("click", handleOperatorClick);
 
 function handleOperatorClick(e) {
   const button = e.target;
+
   if (!button.classList.contains("btn-operator")) return;
 
   if (operatorValue === "") {
@@ -127,4 +129,12 @@ function handleUndoClick(e) {
     : (secondValue = displayedValue);
 
   displayText.innerText = displayedValue;
+}
+
+window.addEventListener("keydown", handleKeyDown);
+
+function handleKeyDown(e) {
+  const pressedKey = document.querySelector(`button[value='${e.key}']`);
+  if (!pressedKey) return;
+  pressedKey.click();
 }
