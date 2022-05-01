@@ -40,11 +40,13 @@ buttons.addEventListener("click", handleDigitClick);
 function handleDigitClick(e) {
   const button = e.target;
   if (!button.classList.contains("btn-digit")) return;
-  displayedValue += button.value;
 
   if (operatorValue === "") {
+    displayedValue += button.value;
     firstValue = displayedValue;
   } else {
+    displayedValue = "";
+    displayedValue += button.value;
     secondValue = displayedValue;
   }
 
@@ -56,8 +58,17 @@ buttons.addEventListener("click", handleOperatorClick);
 function handleOperatorClick(e) {
   const button = e.target;
   if (!button.classList.contains("btn-operator")) return;
-  operatorValue = button.value;
-  displayedValue = "";
+
+  if (operatorValue === "") {
+    operatorValue = button.value;
+    displayedValue = "";
+  } else {
+    displayedValue = operate(operatorValue, firstValue, secondValue);
+    displayText.innerText = displayedValue;
+    operatorValue = button.value;
+    firstValue = displayedValue;
+    secondValue = "";
+  }
 }
 
 buttons.addEventListener("click", handleEqualsClick);
