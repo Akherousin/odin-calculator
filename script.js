@@ -99,3 +99,17 @@ function handlePointClick(e) {
     displayText.innerText = displayedValue;
   }
 }
+
+buttons.addEventListener("click", handleClearClick);
+
+function handleClearClick(e) {
+  const button = e.target;
+  if (!button.classList.contains("btn-clear")) return;
+
+  displayedValue = "";
+  firstValue = "";
+  operatorValue = "";
+  secondValue = "";
+
+  displayText.innerText = displayedValue;
+}
