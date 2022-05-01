@@ -25,3 +25,19 @@ function operate(operator, a, b) {
     return divide(a, b);
   }
 }
+
+//4 step
+
+let storedValue = "";
+
+const buttons = document.querySelector(".buttons");
+const displayText = document.querySelector(".display-text");
+buttons.addEventListener("click", handleDigitClick);
+
+function handleDigitClick(e) {
+  const button = e.target;
+  if (!button.classList.contains("btn-digit")) return;
+  storedValue += button.value;
+
+  displayText.innerText = storedValue;
+}
