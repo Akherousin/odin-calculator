@@ -1,17 +1,17 @@
 function add(a, b) {
-  return a + b;
+  return +a + +b;
 }
 
 function subtract(a, b) {
-  return a - b;
+  return +a - +b;
 }
 
 function multiply(a, b) {
-  return a * b;
+  return +a * +b;
 }
 
 function divide(a, b) {
-  return a / b;
+  return +a / +b;
 }
 
 function operate(operator, a, b) {
@@ -28,7 +28,10 @@ function operate(operator, a, b) {
 
 //4 step
 
-let storedValue = "";
+let displayedValue = "";
+let firstValue = "";
+let operatorValue = "";
+let secondValue = "";
 
 const buttons = document.querySelector(".buttons");
 const displayText = document.querySelector(".display-text");
@@ -37,7 +40,31 @@ buttons.addEventListener("click", handleDigitClick);
 function handleDigitClick(e) {
   const button = e.target;
   if (!button.classList.contains("btn-digit")) return;
-  storedValue += button.value;
+  displayedValue += button.value;
 
-  displayText.innerText = storedValue;
+  if (operatorValue === "") {
+    firstValue = displayedValue;
+  } else {
+    secondValue = displayedValue;
+  }
+
+  displayText.innerText = displayedValue;
+}
+
+buttons.addEventListener("click", handleOperatorClick);
+
+function handleOperatorClick(e) {
+  const button = e.target;
+  if (!button.classList.contains("btn-operator")) return;
+  operatorValue = button.value;
+  displayedValue = "";
+}
+
+buttons.addEventListener("click", handleEqualsClick);
+
+function handleEqualsClick(e) {
+  const button = e.target;
+  if (!button.classList.contains("btn-equals")) return;
+  displayedValue = operate(operatorValue, firstValue, secondValue);
+  displayText.innerText = displayedValue;
 }
